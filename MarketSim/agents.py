@@ -1,9 +1,9 @@
 import numpy as np
 
 class InformedAgent:
-    def __init__(self, true_p, confidence=0.05, threshold=0.02):
+    def __init__(self, true_p, confidence=0.5, threshold=0.02):
         self.true_p = true_p
-        self.confidence = confidence 
+        self.confidence = confidence #std 
         self.threshold = threshold
 
     def get_trade(self, current_prices, n):
