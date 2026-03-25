@@ -2,11 +2,12 @@ import numpy as np
 from .agents import NoisyAgent, InformedAgent
 
 class Market:
-    def __init__(self, amm, T, true_p, noisy_ratio):
+    def __init__(self, amm, T, true_p, noisy_ratio, agent_confidence):
         self.amm = amm
         self.T = T
         self.true_p = true_p
         self.noisy_ratio = noisy_ratio
+        self.agent_confidence = agent_confidence
         self.n = len(true_p)
 
     def run(self):
@@ -26,7 +27,7 @@ class Market:
             if np.random.rand() < self.noisy_ratio:
                 agent = NoisyAgent()
             else:
-                agent = InformedAgent(self.true_p)
+                agent = InformedAgent(self.true_p, confidence=self.agent_confidence)
 
             dq = agent.get_trade(p, self.n)
             if np.any(dq != 0):
