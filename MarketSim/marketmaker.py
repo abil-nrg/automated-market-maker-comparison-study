@@ -5,7 +5,7 @@ class MarketMaker:
         self.q = np.zeros(n)
         self.collected_cash = 0.0
 
-    def price_bundle(self):
+    def price_bundle(self, r):
         raise NotImplementedError
     
     def execute_trade(self, r):
